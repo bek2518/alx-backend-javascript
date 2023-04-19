@@ -4,7 +4,7 @@ export default function handleResponseFromAPI(promise) {
       myresolve({ status: 200, body: 'Success' });
       console.log('Got a response from the API');
     } else {
-      myreject(new Error(''));
+      myreject(new Error());
       console.log('Got a response from the API');
     }
   });
