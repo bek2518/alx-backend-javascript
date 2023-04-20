@@ -19,3 +19,11 @@ try {
 catch(err) {
     console.log(err);
 }
+
+try {
+    const c3 = new HolbertonCourse("ES6", 1, [1, "Jane"]);
+	console.log(c3)
+}
+catch(err) {
+    console.log(err);
+}
