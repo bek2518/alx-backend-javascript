@@ -1,12 +1,7 @@
 export default function getListStudentIds(array) {
-  const list = [];
+  let list = [];
   if (Array.isArray(array)) {
-    let index = 0;
-    while (index < array.length) {
-      const indexArray = array[index];
-      list[index] = indexArray.id;
-      index += 1;
-    }
+    list = array.map((listed) => listed.id);
   } else {
     return list;
   }
