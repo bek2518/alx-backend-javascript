@@ -7,7 +7,7 @@ interface DirectorInterface {
 interface TeacherInterface {
   workFromHome(): string;
   getCoffeeBreak(): string;
-  workDirectorTasks(): string; 
+  workTeacherTasks(): string; 
 }
 
 export class Director implements DirectorInterface {
@@ -33,7 +33,7 @@ export class Teacher implements TeacherInterface {
     return 'Cannot have a break';
   }
 
-  workDirectorTasks(): string {
+  workTeacherTasks(): string {
     return 'Getting to work';
   }
 }
@@ -43,5 +43,17 @@ export function createEmployee(salary: (number | string)): (DirectorInterface | 
     return new  Teacher();
   } else {
     return new Director();
+  }
+}
+
+export function isDirector(employee: DirectorInterface | TeacherInterface) {
+  return (employee as DirectorInterface);
+}
+
+export function executeWork(employee: Director | Teacher) {
+  if (isDirector(employee)) {
+    return (employee.workDirectorTasks())
+  } else {
+    return (employee.workTeacherTasks())
   }
 }
