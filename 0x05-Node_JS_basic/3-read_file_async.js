@@ -1,7 +1,9 @@
 const fs = require('fs');
 
 module.exports = async function countStudents(path) {
-  if (!fs.existsSync(path)) {
+  try {
+    await fs.promises.access(path, fs.constants.F_OK);
+  } catch (error) {
     throw new Error('Cannot load the database');
   }
 
@@ -26,6 +28,8 @@ module.exports = async function countStudents(path) {
       numberStudents += 1;
     }
   }
+  const report = [];
+  report.push(`Number of students: ${numberStudents}`);
   console.log(`Number of students: ${numberStudents}`);
 
   for (const field of fieldList) {
@@ -35,6 +39,8 @@ module.exports = async function countStudents(path) {
         names.push(student[0]);
       }
     }
+    report.push(`Number of students in ${field}: ${names.length}. List: ${names.join(', ')}`);
     console.log(`Number of students in ${field}: ${names.length}. List: ${names.join(', ')}`);
   }
+  return (report.join('\n'));
 };

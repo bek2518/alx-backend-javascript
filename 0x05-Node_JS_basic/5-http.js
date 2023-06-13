@@ -5,7 +5,9 @@ const hostname = '0.0.0.0';
 const port = 1245;
 
 async function countStudents(path) {
-  if (!fs.existsSync(path)) {
+  try {
+    await fs.promises.access(path, fs.constants.F_OK);
+  } catch (error) {
     throw new Error('Cannot load the database');
   }
 
@@ -26,7 +28,7 @@ async function countStudents(path) {
 
   let numberStudents = 0;
   for (const student of splitFileContent) {
-    if (student[0] != null) {
+    if (student[0] !== null) {
       numberStudents += 1;
     }
   }
@@ -45,22 +47,23 @@ async function countStudents(path) {
   return (report.join('\n'));
 }
 
-const app = http.createServer((req, res) => {
+const app = http.createServer(async (req, res) => {
   res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
   if (req.url === '/') {
+    res.setHeader('Content-Type', 'text/plain');
     res.end('Hello Holberton School!');
   } else if (req.url === '/students') {
-    const response = ['This is the list of our students'];
-    countStudents(process.argv[2]).then((data) => {
+    res.setHeader('Content-Type', 'text/plain');
+    try {
+      const response = ['This is the list of our students'];
+      const data = await countStudents(process.argv[2]);
       response.push(data);
       const text = response.join('\n');
-      res.write(Buffer.from(text));
+      res.write(text);
       res.end();
-    })
-      .catch((err) => {
-        res.end(err);
-      });
+    } catch (err) {
+      res.end(err.message);
+    }
   }
 });
 
