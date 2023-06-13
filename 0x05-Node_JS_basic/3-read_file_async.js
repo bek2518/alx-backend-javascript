@@ -1,11 +1,11 @@
 const fs = require('fs');
 
-module.exports = function countStudents(path) {
+module.exports = async function countStudents(path) {
   if (!fs.existsSync(path)) {
     throw new Error('Cannot load the database');
   }
 
-  const fileContent = fs.readFileSync(path, 'utf8');
+  const fileContent = await fs.promises.readFile(path, 'utf8');
   const fileContentArray = fileContent.split('\n');
   const splitFileContent = [];
 
