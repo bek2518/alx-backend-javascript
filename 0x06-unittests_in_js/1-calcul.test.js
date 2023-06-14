@@ -41,35 +41,35 @@ describe('Testing SUM', function() {
 
 describe('Testing SUBTRACT', function() {
   it('SUBTRACT: Whole number and whole number', function() {
-    assert.equal(calculateNumber('SUBTRACT', 1, 4), 3);
+    assert.equal(calculateNumber('SUBTRACT', 1, 4), -3);
   });
 
   it('SUBTRACT: Whole number and decimal', function() {
-    assert.equal(calculateNumber('SUBTRACT', 1, 3.7), 3);
+    assert.equal(calculateNumber('SUBTRACT', 1, 3.7), -3);
   });
 
   it('SUBTRACT: Decimal and decimal under 0.5', function() {
-    assert.equal(calculateNumber('SUBTRACT', 1.2, 3.7), 3);
+    assert.equal(calculateNumber('SUBTRACT', 1.2, 3.7), -3);
   });
 
   it('SUBTRACT: Decimal and decimal over 0.5', function() {
-    assert.equal(calculateNumber('SUBTRACT', 1.5, 3.7), 2);
+    assert.equal(calculateNumber('SUBTRACT', 1.5, 3.7), -2);
   });
 
   it('SUBTRACT: Negative number and Negative number', function() {
-    assert.equal(calculateNumber('SUBTRACT', -1, -4), -3);
+    assert.equal(calculateNumber('SUBTRACT', -1, -4), 3);
   });
 
   it('SUBTRACT: Negative number and Negative decimal', function() {
-    assert.equal(calculateNumber('SUBTRACT', -1, -3.7), -3);
+    assert.equal(calculateNumber('SUBTRACT', -1, -3.7), 3);
   });
 
   it('SUBTRACT: Negative decimal and Negative decimal under 0.5', function() {
-    assert.equal(calculateNumber('SUBTRACT', -1.2, -3.7), -3);
+    assert.equal(calculateNumber('SUBTRACT', -1.2, -3.7), 3);
   });
 
   it('SUBTRACT: Negative decimal and whole number', function() {
-    assert.equal(calculateNumber('SUBTRACT', -1, 3), 4);
+    assert.equal(calculateNumber('SUBTRACT', -1, 3), -4);
   });
 });
 
