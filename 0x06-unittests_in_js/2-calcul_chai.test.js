@@ -1,5 +1,5 @@
 const { expect } = require('chai');
-const calculateNumber = require('./1-calcul');
+const calculateNumber = require('./2-calcul');
 
 describe('Testing SUM', function() {
   it('SUM: Whole number and whole number', function() {
