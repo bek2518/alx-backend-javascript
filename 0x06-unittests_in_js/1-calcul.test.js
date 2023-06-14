@@ -86,6 +86,18 @@ describe('Testing DIVIDE', function() {
     assert.equal(calculateNumber('DIVIDE', 1, 4.5), 0.2);
   });
 
+  it('DIVIDE: Negative number and Negative number', function() {
+    assert.equal(calculateNumber('DIVIDE', -1, -4.5), 0.25);
+  });
+
+  it('DIVIDE: Negative number and Whole number', function() {
+    assert.equal(calculateNumber('DIVIDE', -1.4, 4.5), -0.2);
+  });
+
+  it('DIVIDE: Whole number and Negative number', function() {
+    assert.equal(calculateNumber('DIVIDE', 1, -4.5), -0.25);
+  });
+
   it('DIVIDE: Divide by zero', function() {
     assert.equal(calculateNumber('DIVIDE', 1.4, 0), 'Error');
   });
